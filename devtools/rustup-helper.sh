@@ -2,6 +2,15 @@
 
 set -Eeuo pipefail
 
+main() {
+    if [[ $# -lt 1 ]]; then 
+        echo "Usage: $0 version"
+        echo "> version: [nightly stable nightly-01-01-2019 etc]"
+    else 
+        run "$@"
+    fi
+}
+
 run() {
     local VERSION=${1:?version not set}
 
@@ -21,4 +30,4 @@ run() {
     rustup target add --toolchain ${VERSION} ${TARGETS}
 }
 
-run "$@"
+main "$@"
