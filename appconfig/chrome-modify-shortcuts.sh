@@ -28,7 +28,7 @@ run() {
 		[[ -f "$f" ]] && update_file $f
 	done
 
-	if [ $SHOULD_UPDATE -eq 0 ]; then return; fi;
+	if [ $SHOULD_UPDATE -eq 0 ]; then return 0; fi;
 
 	# chrome apps
 	for f in $HOME/.local/share/applications/chrome-*.desktop; do 
