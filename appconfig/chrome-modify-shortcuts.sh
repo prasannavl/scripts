@@ -10,8 +10,8 @@ SHOULD_UPDATE=0
 
 update_file() {
 	local f="${1:?file required}"
-	result="$(grep -P "${FLAGS}" "$f")"
-	if [ -z "$result" ]; then
+	local result="$(grep -P "${FLAGS}" "$f" || echo "")"
+	if [[ -z "$result" ]]; then
 		echo "> current config: ${f}:"
 		echo "$result"
 		sudo sed -i -E "${PATTERN}" "$f"
