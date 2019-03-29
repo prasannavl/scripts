@@ -3,9 +3,10 @@
 set -Eeuo pipefail
 
 main() {
-    if [[ $# -lt 1 ]]; then 
+    if [[ $# -ne 1 ]]; then 
         echo "Usage: $0 version"
         echo "> version: [nightly stable nightly-01-01-2019 etc]"
+        return 1
     else 
         run "$@"
     fi

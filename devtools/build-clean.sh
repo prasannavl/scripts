@@ -1,6 +1,16 @@
 #!/bin/bash
+# Recursive build cleaner
 
 set -Eeuo pipefail
+
+main() {
+    if [[ $# -eq 1 ]]; then
+        run "$@"
+        return 0
+    fi
+    echo "Usage: $0 <target-dir>"
+    return 1
+}
 
 run() {
     local target="${1:?target required}"
@@ -51,4 +61,4 @@ rmf() {
     fi
 }
 
-run "$@"
+main "$@"

@@ -2,11 +2,13 @@
 
 set -Eeuo pipefail
 
-FLAGS=" --force-device-scale-factor=1.25 --password-store=gnome"
-m='^(Exec=.*)$'
-r="\\1${FLAGS}"
-PATTERN="s/${m}/${r}/g"
-SHOULD_UPDATE=0
+setup_vars() {
+	FLAGS=" --force-device-scale-factor=1.25 --password-store=gnome"
+	local m='^(Exec=.*)$'
+	local r="\\1${FLAGS}"
+	PATTERN="s/${m}/${r}/g"
+	SHOULD_UPDATE=0
+}
 
 update_file() {
 	local f="${1:?file required}"
@@ -22,6 +24,7 @@ update_file() {
 }
 
 run() {
+	setup_vars
 	echo "> check chrome config";
 	# chrome main application
 	for f in /usr/share/applications/google-chrome*.desktop; do

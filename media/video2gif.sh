@@ -2,10 +2,12 @@
 
 set -Eeuo pipefail
 
-PALETTE="$(mktemp /tmp/ffmpeg2gifXXXXXX.png)"
+setup_vars() {
+	PALETTE="$(mktemp /tmp/ffmpeg2gifXXXXXX.png)"	
+}
 
 main() {
-	if [[ $# -lt 4 ]]; then 
+	if [[ $# -lt 4 || $# -gt 5 ]]; then 
 		cat <<-EOH
 		$0: Script to generate animated gif from video.
 		
@@ -14,6 +16,7 @@ main() {
 		> opts: -ss seconds [-to seconds || -t duration]
 		EOH
 	else
+		setup_vars
 		trap cleanup 1 2 3 6 15 ERR
 		run "$@"
 	fi

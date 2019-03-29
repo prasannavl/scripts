@@ -31,16 +31,26 @@ postrm_gc() {
 }
 
 main() {
-	case ${1:-} in 
-		submodule_rm|purge|postrm_gc)
-			eval $1 "${2-} ${3-} ${4-} ${5-} ${6-} ${7-} ${8-} ${9-}"
-			;;
-		*)
-		echo "Usage: "
-		echo "submodule_rm <target_dir>"
-		echo "purge <match-filter>"
-		echo "postrm_gc"
-	esac
+    local commands=("submodule_rm" "purge" "postrm_gc")
+    for x in "${commands[@]}"; do 
+        if [[ "$x" == "${1-}" ]]; then
+            eval "$@"
+            return 0
+        fi
+    done
+    usage
+}
+
+usage() {
+	echo "Usage: $0 <commands>"
+	echo ""
+	echo "Commands: "
+	echo ""
+	echo "submodule_rm <target_dir>"
+	echo "purge <match-filter>"
+	echo "postrm_gc"
+	echo ""
+	return 1
 }
 
 main "$@"
