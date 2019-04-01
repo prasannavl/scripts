@@ -3,11 +3,11 @@
 set -Eeuo pipefail
 
 main() {
-    if [[ $# -ne 1 ]]; then 
+    if [[ $# -ne 1 ]]; then
         echo "Usage: $0 version"
         echo "> version: [nightly stable nightly-01-01-2019 etc]"
         return 1
-    else 
+    else
         run "$@"
     fi
 }
@@ -25,7 +25,7 @@ run() {
                         aarch64-linux-android \
                         armv7-linux-androideabi \
                         i686-linux-android"}
-    
+
     rustup toolchain install ${VERSION}
     rustup component add --toolchain ${VERSION} ${COMPONENTS}
     rustup target add --toolchain ${VERSION} ${TARGETS}
