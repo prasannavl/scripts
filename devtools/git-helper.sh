@@ -33,8 +33,9 @@ postrm_gc() {
 main() {
     local commands=("submodule-rm" "purge" "postrm-gc")
     for x in "${commands[@]}"; do
-        if [[ "$x" == "${1-}" ]]; then
-            ${1//-/_} "$@"
+        local cmd="${1-}"
+        if [[ "$x" == "${cmd}" ]]; then
+            shift && ${cmd//-/_} "$@"
             return 0
         fi
     done

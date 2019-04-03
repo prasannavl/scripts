@@ -100,8 +100,9 @@ main() {
     COMMANDS+=("pubkey")
     COMMANDS+=("der-to-pem" "pem-to-der" "pem-to-pkcs12" "pkcs12-to-pem" "pkcs12-to-pem-components")
     for x in "${COMMANDS[@]}"; do
-        if [[ "$x" == "${1-}" ]]; then
-            ${1//-/_} "$@"
+        local cmd="${1-}"
+        if [[ "$x" == "${cmd}" ]]; then
+            shift && ${cmd//-/_} "$@"
             return 0
         fi
     done
