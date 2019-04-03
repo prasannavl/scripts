@@ -35,7 +35,8 @@ main() {
     for x in "${commands[@]}"; do
         local cmd="${1-}"
         if [[ "$x" == "${cmd}" ]]; then
-            shift && ${cmd//-/_} "$@"
+            shift
+            ${cmd//-/_} "$@"
             return 0
         fi
     done
