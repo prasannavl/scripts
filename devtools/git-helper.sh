@@ -31,10 +31,10 @@ postrm_gc() {
 }
 
 main() {
-    local commands=("submodule_rm" "purge" "postrm_gc")
+    local commands=("submodule-rm" "purge" "postrm-gc")
     for x in "${commands[@]}"; do
         if [[ "$x" == "${1-}" ]]; then
-            eval "$@"
+            ${1//-/_} "$@"
             return 0
         fi
     done
@@ -46,9 +46,9 @@ usage() {
     echo ""
     echo "Commands: "
     echo ""
-    echo "submodule_rm <target_dir>"
+    echo "submodule-rm <target_dir>"
     echo "purge <match-filter>"
-    echo "postrm_gc"
+    echo "postrm-gc"
     echo ""
     return 1
 }

@@ -94,14 +94,14 @@ pubkey() {
 }
 
 main() {
-    COMMANDS=("pk" "pk_verify" "csr" "csr_verify" "pk_and_csr")
-    COMMANDS+=("x509" "x509_verify" "x509_verify-issuer" "x509_verify-hash" "x509_verify-dates")
-    COMMANDS+=("self_x509" "url_verify" "pkcs12_verify")
+    COMMANDS=("pk" "pk-verify" "csr" "csr-verify" "pk-and-csr")
+    COMMANDS+=("x509" "x509-verify" "x509-verify-issuer" "x509-verify-hash" "x509-verify-dates")
+    COMMANDS+=("self-x509" "url-verify" "pkcs12-verify")
     COMMANDS+=("pubkey")
-    COMMANDS+=("der_to_pem" "pem_to_der" "pem_to_pkcs12" "pkcs12_to_pem" "pkcs12_to_pem_components")
+    COMMANDS+=("der-to-pem" "pem-to-der" "pem-to-pkcs12" "pkcs12-to-pem" "pkcs12-to-pem-components")
     for x in "${COMMANDS[@]}"; do
         if [[ "$x" == "${1-}" ]]; then
-            eval "$@"
+            ${1//-/_} "$@"
             return 0
         fi
     done
@@ -117,16 +117,16 @@ usage() {
     echo "pk [bits (2048)]"
     echo "csr <pkey>"
     echo "x509 <csr> <signkey> [days (365)]"
-    echo "pk_verify <key>"
-    echo "csr_verify <csr>"
-    echo "x509_verify <cert>"
-    echo "x509_verify_issuer <cert>"
-    echo "x509_verify_hash <cert>"
-    echo "x509_verify_dates <cert>"
-    echo "pk_and_csr [bits (2048)] [days (365)] [keyout (key.pem)] [csrout (csr.pem)]"
-    echo "self_x509 [bits (2048)] [days (365)] [keyout (key.pem)] [certout (cert.pem)]"
-    echo "url_verify <url> [port (443)]"
-    echo "pkcs12_verify <pfx>"
+    echo "pk-verify <key>"
+    echo "csr-verify <csr>"
+    echo "x509-verify <cert>"
+    echo "x509-verify-issuer <cert>"
+    echo "x509-verify-hash <cert>"
+    echo "x509-verify-dates <cert>"
+    echo "pk-and-csr [bits (2048)] [days (365)] [keyout (key.pem)] [csrout (csr.pem)]"
+    echo "self-x509 [bits (2048)] [days (365)] [keyout (key.pem)] [certout (cert.pem)]"
+    echo "url-verify <url> [port (443)]"
+    echo "pkcs12-verify <pfx>"
     echo ""
     echo "All commands: "
     echo "${COMMANDS[@]}"
