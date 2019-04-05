@@ -1,3 +1,3 @@
-# scripts
+# Scripts
 
-Some of my personal scripts
+System maintenance and helper scripts

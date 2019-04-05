@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-rclone copy --dry-run --ignore-existing --no-update-modtime --transfers 4 --checkers 8 --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 1s gdrive: /home/pvl/gdrive/ --filter-from "/home/pvl/scripts/rclone/gdrive.docpics.filter" "$@"
