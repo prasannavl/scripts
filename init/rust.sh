@@ -5,13 +5,13 @@ set -Eeuo pipefail
 setup_vars() {
     ensure_script_dir
     SCRIPTS_DIR=${_SCRIPT_DIR}/..
-    LOCAL_BIN=$HOME/.local/bin
 }
 
 main() {
     setup_vars
-    mkdir ${LOCAL_BIN} -p
-    ln -s -T ${SCRIPTS_DIR}/devtools/node-repl.sh ${LOCAL_BIN}/node-repl
+    curl https://sh.rustup.rs -sSf | sh
+    ${SCRIPTS_DIR}/devtools/rustup-helper.sh stable
+    ${SCRIPTS_DIR}/devtools/rustup-helper.sh nightly
 }
 
 ensure_script_dir() {
@@ -21,3 +21,4 @@ ensure_script_dir() {
 }
 
 main "$@"
+
