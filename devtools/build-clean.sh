@@ -4,7 +4,7 @@
 set -Eeuo pipefail
 
 main() {
-    if [[ $# -eq 1 ]]; then
+    if [[ $# -eq 1 || $# -eq 2 ]]; then
         run "$@"
         return 0
     fi
