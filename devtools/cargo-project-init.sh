@@ -17,7 +17,7 @@ init() {
 init_files() {
     cat <<EOF > ${PROJECT_DIR}/src/main.rs
 #![feature(async_await, existential_type)]
-#![deny(
+#![warn(
     nonstandard_style,
     rust_2018_idioms,
     future_incompatible,
@@ -27,35 +27,46 @@ init_files() {
 #[macro_use]
 extern crate log;
 
+use std::io::prelude::*;
 use quixutils::prelude::*;
 
 fn main() -> Result<(), exitfailure::ExitFailure> {
     quixutils::logger::init();
     info!("init");
+
     Ok(())
 }
 
 EOF
 }
 
-add() {
+add_all() {
+    add_bin_libs
+    add_libs
+}
+
+add_bin_libs() {
     cd "${PROJECT_DIR}"
     # Binary crates
     cargo add env_logger exitfailure structopt
+}
+
+add_libs() {
+    cd "${PROJECT_DIR}"
     # Lib crates
-    cargo add log failure itertools serde serde_json \
+    cargo add log failure serde serde_json \
         lazy_static chrono clap rand walkdir time regex \
-        hyper quixutils \
+        hyper bytes itertools quixutils \
         tokio futures-preview@0.3.0-alpha.16
 }
 
 run() {
     init
-    add
+    add_all
 }
 
 main() {
-    COMMANDS=("run" "init" "add")
+    COMMANDS=("run" "init" "add-all" "add-bin-libs" "add-libs")
 
     if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
         usage
