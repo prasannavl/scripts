@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithTextEditor]
+@="Open with Text Editor"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithTextEditor\command]
+@="D:\\Apps\\User\\SublimeText\\sublime_text.exe \"%V\""

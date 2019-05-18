@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.generic]
+@="genericfile"
+
+[HKEY_CLASSES_ROOT\.generic\ShellNew]
+"NullFile"=""
+"IconPath"="%SystemRoot%\\System32\\imageres.dll,-102"
+
+[HKEY_CLASSES_ROOT\.generic\ShellNew\Config]
+"NoExtension"=""
+
+[HKEY_CLASSES_ROOT\genericfile]
+@="File"

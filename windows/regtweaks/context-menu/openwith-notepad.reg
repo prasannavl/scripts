@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithNotepad]
+@="Open with Notepad"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithNotepad\command]
+@="notepad \"%V\""
