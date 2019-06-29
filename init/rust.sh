@@ -21,4 +21,3 @@ ensure_script_dir() {
 }
 
 main "$@"
-

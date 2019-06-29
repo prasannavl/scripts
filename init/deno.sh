@@ -2,8 +2,19 @@
 
 set -Eeuo pipefail
 
-LOCAL_BIN=$HOME/.local/bin
+setup_vars() {
+    LOCAL_BIN=$HOME/.local/bin
+}
 
-curl -fsSL https://deno.land/x/install/install.sh | sh
-mkdir ${LOCAL_BIN} -p
-ln -s $HOME/.deno/bin/deno ${LOCAL_BIN}
+symlink_to_local_bin() {
+    mkdir ${LOCAL_BIN} -p
+    ln -s $HOME/.deno/bin/deno ${LOCAL_BIN}
+}
+
+main() {
+    setup_vars
+    curl -fsSL https://deno.land/x/install/install.sh | sh
+    symlink_to_local_bin
+}
+
+main "$@"
