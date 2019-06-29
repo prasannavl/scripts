@@ -6,29 +6,40 @@ setup_vars() {
     ensure_script_dir
     SCRIPTS_DIR=${_SCRIPT_DIR}/..
     LOCAL_BIN=$HOME/.local/bin
-    LOCAL_APP_SRC=$HOME/.local/src/git-credential-libsecret
-    DIST_APP_SRC=/usr/share/doc/git/contrib/credential/libsecret
+    DEBIAN_WORK_DIR=$HOME/.local/src/git-credential-libsecret
+    DEBIAN_SRC_DIR=/usr/share/doc/git/contrib/credential/libsecret
+}
+
+check_os() {
+    test -f /etc/os-release
+    source /etc/os-release
+    [[ "$ID_LIKE" == "debian" ]] || {
+        echo "> This current OS is not supported by this script"
+        exit 1
+    }
 }
 
 check_src() {
-    [[ -d "${DIST_APP_SRC}" ]] || { 
-            echo "> git-credential-libsecret src not found at: ${DIST_APP_SRC}"
+    check_os
+    [[ -d "${DEBIAN_SRC_DIR}" ]] || { 
+            echo "> git-credential-libsecret src not found at: ${DEBIAN_SRC_DIR}"
             exit 1
         }
     if ! dpkg -l libsecret-1-dev &> /dev/null; then 
         "> package libsecret-1-dev not found; installing.."
         sudo apt install libsecret-1-dev
     fi
+    exit 0
 }
 
 main() {
     setup_vars
     check_src
     mkdir ${LOCAL_BIN} -p
-    mkdir ${LOCAL_APP_SRC} -p
-    echo "> copying src to: ${LOCAL_APP_SRC}"
-    cp -R ${DIST_APP_SRC}/. ${LOCAL_APP_SRC}
-    cd ${LOCAL_APP_SRC}
+    mkdir ${DEBIAN_WORK_DIR} -p
+    echo "> copying src to: ${DEBIAN_WORK_DIR}"
+    cp -R ${DEBIAN_SRC_DIR}/. ${DEBIAN_WORK_DIR}
+    cd ${DEBIAN_WORK_DIR}
     echo "> building.."
     make
     echo "> build success"
