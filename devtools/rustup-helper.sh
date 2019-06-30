@@ -5,7 +5,7 @@ set -Eeuo pipefail
 main() {
     if [[ $# -ne 1 ]]; then
         echo "Usage: $0 version"
-        echo "> version: [nightly stable nightly-01-01-2019 etc]"
+        echo "> version: [nightly stable nightly-2019-01-01 etc]"
         return 1
     else
         run "$@"
