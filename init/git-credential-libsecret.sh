@@ -4,7 +4,6 @@ set -Eeuo pipefail
 
 setup_vars() {
     ensure_script_dir
-    SCRIPTS_DIR=${_SCRIPT_DIR}/..
     LOCAL_BIN=$HOME/.local/bin
     DEBIAN_WORK_DIR=$HOME/.local/src/git-credential-libsecret
     DEBIAN_SRC_DIR=/usr/share/doc/git/contrib/credential/libsecret
@@ -14,7 +13,7 @@ check_os() {
     test -f /etc/os-release
     source /etc/os-release
     [[ "$ID_LIKE" == "debian" ]] || {
-        echo "> This current OS is not supported by this script"
+        echo "> This script only works on Debian based OS. Exiting"
         exit 1
     }
 }

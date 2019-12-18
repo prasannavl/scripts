@@ -4,14 +4,13 @@ set -Eeuo pipefail
 
 setup_vars() {
     ensure_script_dir
-    SCRIPTS_DIR=${_SCRIPT_DIR}/..
 }
 
 main() {
     setup_vars
     curl https://sh.rustup.rs -sSf | sh
-    ${SCRIPTS_DIR}/devtools/rustup-helper.sh stable
-    ${SCRIPTS_DIR}/devtools/rustup-helper.sh nightly
+    ${_SCRIPT_DIR}/rust-components.sh stable
+    ${_SCRIPT_DIR}/rust-components.sh nightly
 }
 
 ensure_script_dir() {
