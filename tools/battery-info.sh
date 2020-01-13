@@ -1,4 +1,6 @@
-# show battery info
+#!/bin/bash
+
+# Show battery info
 
 upower -i /org/freedesktop/UPower/devices/battery_BAT0
 
