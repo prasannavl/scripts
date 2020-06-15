@@ -25,10 +25,9 @@ check_src() {
             exit 1
         }
     if ! dpkg -l libsecret-1-dev &> /dev/null; then 
-        "> package libsecret-1-dev not found; installing.."
+        echo "> package libsecret-1-dev not found; installing.."
         sudo apt install libsecret-1-dev
     fi
-    exit 0
 }
 
 main() {

@@ -16,5 +16,5 @@ TIME_ZONES=(
 )
 
 for tz in "${TIME_ZONES[@]}"; do
-    echo -e "$tz:\t$(TZ=$tz date)"
+    echo -e "$tz:\t$(TZ=$tz date "$@")"
 done
