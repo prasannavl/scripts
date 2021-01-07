@@ -10,9 +10,7 @@ setup_vars() {
 }
 
 check_os() {
-    test -f /etc/os-release
-    source /etc/os-release
-    [[ "$ID_LIKE" == "debian" ]] || {
+    [[ -f /etc/debian_version ]] || {
         echo "> This script only works on Debian based OS. Exiting"
         exit 1
     }
