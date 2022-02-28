@@ -8,6 +8,7 @@ setup_vars() {
 
 symlink_to_local_bin() {
     mkdir ${LOCAL_BIN} -p
+    rm ${LOCAL_BIN}/deno || true
     ln -s $HOME/.deno/bin/deno ${LOCAL_BIN}
 }
 
