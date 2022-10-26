@@ -12,7 +12,7 @@ main() {
     ensure_script_dir
     local conf_path=/etc/sudoers.d/50-brightness-scripts
     local script_path1="$HOME/bin/brightness.sh"
-    local script_path2="$HOME/bin/brightness-ext.sh"
+    local script_path2="$HOME/bin/brightness-ddcci.sh"
 
     cat <<END | sudo tee ${conf_path}
 # Allow brightness scripts to be run as root
