@@ -5,8 +5,8 @@ file=/etc/systemd/logind.conf
 # options: suspend (default), ignore, etc
 val=${1:-ignore}
 
-m='^#?HandlLidSwitch=.*$'
-r="HandlLidSwitch=${val}\n"
+m='^#?HandleLidSwitch=.*$'
+r="HandleLidSwitch=${val}\n"
 pattern="s/${m}/${r}/"
 
 echo "> original from: $file"
