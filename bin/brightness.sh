@@ -3,8 +3,8 @@
 set -Eeuo pipefail
 
 setup_vars() {
-    # BRIGHTNESS_DEVICE=${BRIGHTNESS_DEVICE:-"/sys/class/backlight/intel_backlight"}
-    BRIGHTNESS_DEVICE=${BRIGHTNESS_DEVICE:-"/sys/class/backlight/nvidia_wmi_ec_backlight"}
+    BRIGHTNESS_DEVICE=${BRIGHTNESS_DEVICE:-"/sys/class/backlight/intel_backlight"}
+    #BRIGHTNESS_DEVICE=${BRIGHTNESS_DEVICE:-"/sys/class/backlight/nvidia_wmi_ec_backlight"}
 }
 
 main() {
