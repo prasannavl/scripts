@@ -22,13 +22,14 @@ setup_vars() {
 
 main() {
     setup_vars
+    local time_zones=("${TIME_ZONES[@]}")
 
     if [[ "$#" -gt 0 ]]; then
-        for tz in "${TIME_ZONES[@]}"; do
+        for tz in "${time_zones[@]}"; do
             printf "%s\n%-22s %s\n" "------" "$tz" "$(date --date="TZ=\"$tz\" ${*:-now}")"
         done
     else
-        for tz in "${TIME_ZONES[@]}"; do
+        for tz in "${time_zones[@]}"; do
             printf "%s\n%-22s %s\n" "------" "$tz" "$(TZ=$tz date)"
         done
     fi
