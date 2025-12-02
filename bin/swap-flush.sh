@@ -2,5 +2,5 @@
 
 set -Eeuo pipefail
 
-sudo swapoff /swapfile || true
+sudo swapoff -a || true
 sudo swapon -a
