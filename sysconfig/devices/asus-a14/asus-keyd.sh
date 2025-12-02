@@ -10,10 +10,10 @@ END
 sudo mkdir -p /etc/keyd/
 cat <<-END | sudo tee /etc/keyd/default.conf
     [ids]
-    *
-    -0000:0000:16a83aed
+    0001:0001:09b4e68d
+
     [main]
-    leftshift+leftmeta = layer(control)
+    leftshift+leftmeta+f23 = layer(control)
 END
 
 sudo systemctl daemon-reload
